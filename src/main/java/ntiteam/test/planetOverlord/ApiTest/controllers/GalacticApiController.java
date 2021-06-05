@@ -73,15 +73,15 @@ public class GalacticApiController {
         if (planetRepo.findById(planetID).isPresent()) {
             planet = planetRepo.findById(planetID).get();
 
-            overlordID = planet.getOverlord().getOverlordID();
-
-            if (overlordRepo.findById(overlordID).isPresent())
-                overlord = overlordRepo.findById(overlordID).get();
-            else
-                return "Overlord not found";
-
-            overlord.removePlanetForOverlord(planet);
-            overlordRepo.save(overlord);
+            if(planet.getOverlord() != null) {
+                overlordID = planet.getOverlord().getOverlordID();
+                if (overlordRepo.findById(overlordID).isPresent())
+                    overlord = overlordRepo.findById(overlordID).get();
+                else
+                    return "Overlord not found";
+                overlord.removePlanetForOverlord(planet);
+                overlordRepo.save(overlord);
+            }
 
             planetRepo.deleteById(planetID);
             return "Planet has been destroyed";

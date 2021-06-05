@@ -48,7 +48,7 @@ public class GalacticWebController {
     }
 
     @PostMapping("/createNewPlanet")
-    public String createNewPlanet(
+    public String createNewPlanets(
             @RequestParam(name="planetName",required=true,defaultValue="") String planetName
     ) {
         Planet planet = new Planet(planetName);
@@ -59,7 +59,7 @@ public class GalacticWebController {
     }
 
     @DeleteMapping("/destroyPlanet/{planetID}")
-    public String destroyPlanet(@PathVariable("planetID") long planetID) {
+    public String destroyPlanets(@PathVariable("planetID") long planetID) {
         Overlord overlord;
         long overlordID;
 
@@ -84,7 +84,7 @@ public class GalacticWebController {
     }
 
     @GetMapping("/showSlackers")
-    public String showSlackers(Model model) {
+    public String showSlacker(Model model) {
         model.addAttribute("overlords", overlordRepo.findSlackerOverlords());
         return "slackerOverlord";
     }
@@ -96,7 +96,7 @@ public class GalacticWebController {
     }
 
     @PatchMapping("/planetForOverlord/planet/{planetID}")
-    public String setPlanetForOverlord(@PathVariable("planetID") long planetID, @RequestParam(name="overlordID",required=true,defaultValue="") long overlordID) {
+    public String setPlanetsForOverlord(@PathVariable("planetID") long planetID, @RequestParam(name="overlordID",required=true,defaultValue="") long overlordID) {
 
         if(overlordID == -1){
             return "redirect:/Planets";
