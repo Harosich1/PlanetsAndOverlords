@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <style>
+        button {
+        background-color: darkturquoise;
+        color: black;
+        padding: 14px 20px;
+        margin: 4% 3%;
+        border: none;
+        cursor: pointer;
+        width: 25%;
+    }
+        a{
+            text-decoration: none;
+        }
+
+        form {
+            display: inline-block;
+        }
+
+    button:hover {
+        opacity: 0.8;
+    }
+    </style>
+    <meta charset="UTF-8">
+</head>
+<body style="vertical-align: middle; horiz-align: center">
+<div style="border: 4px solid darkturquoise; width: 60%; height: 80%;
+     position: absolute;
+     margin: auto;
+     top: 0;
+     right: 0;
+     bottom: 0;
+     left: 0;
+  display: flex;
+  flex-direction: column;">
+    <div style="border: 4px solid darkturquoise; width: 95%; height: 25%;
+     position: absolute;
+     margin: auto;
+     top: 10px;
+     right: 0;
+     left: 0;">
+        <form th:method="POST" th:action="@{/createNewOverlord}">
+            <label style="padding: 10px; font-size: 25px">Lets create our perfect candidate</label>
+            <br/>
+            <label style="padding: 10px">Name</label>
+            <input style="margin: 10px;" type="text" name = "overlordName"/>
+            <br/>
+            <label style="padding: 10px">Age</label>
+            <input style="margin: 10px;" type="text" name = "overlordAge"/>
+            <br/>
+            <input style="margin: 10px;" type="submit" value="create"/>
+        </form>
+    </div>
+    <div style="border: 4px solid darkturquoise; width: 95%; height: 65%;
+     position: absolute;
+     margin: auto;
+     right: 0;
+     bottom: 10px;
+     left: 0;">
+        <table style="width: 100%; border: 4px solid darkturquoise">
+            <tr>
+                <th style="border: 4px solid darkturquoise; padding: 10px">
+                    id
+                </th>
+                <th style="border: 4px solid darkturquoise; padding: 10px">
+                    Name
+                </th>
+                <th style="border: 4px solid darkturquoise; padding: 10px">
+                    Age
+                </th>
+            </tr>
+            <tr th:each="overlord : ${overlords}">
+                <td th:text = "${overlord.getOverlordID()}" style="border: 4px solid darkturquoise;">
+                <td th:text = "${overlord.getOverlordName()}" style="border: 4px solid darkturquoise;">
+                <td th:text = "${overlord.getOverlordAge()}" style="border: 4px solid darkturquoise;">
+            </tr>
+        </table>
+        <a th:href="@{/Planets}"><button>Create new planet</button></a>
+        <a th:href="@{/showSlackers}"><button>Show Slacker Overlords</button></a>
+        <a th:href="@{/showYoungOverlords}"><button>Show Top Young Overlords</button></a>
+    </div>
+    <br>
+    <br>
+</div>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <style>
+        button {
+            background-color: darkturquoise;
+            color: black;
+            padding: 14px 20px;
+            margin: 4% 3%;
+            border: none;
+            cursor: pointer;
+            width: 25%;
+        }
+        a{
+            text-decoration: none;
+        }
+        button:hover {
+            opacity: 0.8;
+        }
+    </style>
+    <meta charset="UTF-8">
+</head>
+<body style="vertical-align: middle; horiz-align: center">
+<div style="border: 4px solid darkturquoise; width: 60%; height: 80%;
+     position: absolute;
+     margin: auto;
+     top: 0;
+     right: 0;
+     bottom: 0;
+     left: 0;
+  display: flex;
+  flex-direction: column;">
+    <div style="border: 4px solid darkturquoise; width: 95%; height: 25%;
+     position: absolute;
+     margin: auto;
+     top: 10px;
+     right: 0;
+     left: 0;">
+        <form th:method="POST" th:action="@{/createNewPlanet}">
+            <label style="padding: 10px; font-size: 25px">Lets find planet</label>
+            <br/>
+            <label style="padding: 10px">Name</label>
+            <input style="margin: 10px;" type="text" name = "planetName"/>
+            <br/>
+            <input style="margin: 10px;" type="submit" value="create"/>
+        </form>
+    </div>
+    <div style="border: 4px solid darkturquoise; width: 95%; height: 65%;
+     position: absolute;
+     margin: auto;
+     right: 0;
+     bottom: 10px;
+     left: 0;">
+        <table style="width: 100%; border: 4px solid darkturquoise">
+            <tr>
+                <th style="border: 4px solid darkturquoise; padding: 10px">
+                    id
+                </th>
+                <th style="border: 4px solid darkturquoise; padding: 10px">
+                    Name
+                </th>
+                <th style="border: 4px solid darkturquoise; padding: 10px">
+                    Overlord's name
+                </th>
+                <th style="border: 4px solid darkturquoise; padding: 10px">
+                    Action
+                </th>
+            </tr>
+            <tr th:each="planet : ${planets}">
+                <td th:text = "${planet.getPlanetID()}" style="border: 4px solid darkturquoise;"></td>
+                <td th:text = "${planet.getPlanetName()}" style="border: 4px solid darkturquoise;"></td>
+                <td style="border: 4px solid #00ced1;">
+                <form th:method="PATCH" th:action="@{/planetForOverlord/planet/{planetID}(planetID=${planet.getPlanetID()})}">
+                    <select name="overlordID" >
+                        <option th:value="${planet.getOverlord() != null} ? ${planet.getOverlord().getOverlordID()} : '-1'" th:text = "${planet.getOverlord() != null} ? ${planet.getOverlord().getOverlordName()} : 'Theres no Overlord'"></option>
+                        <option th:each="overlord : ${overlords}" th:value="${overlord.getOverlordID()}" th:text="${overlord.getOverlordName()}"></option>
+                    </select>
+                </td>
+                <td style="border: 4px solid darkturquoise;">
+                        <input type="submit" value="Appoint Overlord" />
+                    </form>
+                    <form th:method="DELETE" th:action="@{/destroyPlanet/{planetID}(planetID = ${planet.getPlanetID()})}">
+                        <input type="submit" value="DESTROY PLANET" />
+                    </form>
+                </td>
+            </tr>
+        </table>
+        <a th:href="@{/Overlords}"><button>Go back to list of Overlords</button></a>
+    </div>
+    <br>
+    <br>
+</div>
+</body>
+</html>

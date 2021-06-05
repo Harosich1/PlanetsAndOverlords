@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <style>
+        .hello_div {
+            background-color: #0055aa;
+            width: 25%;
+            height: 15%;
+            position: absolute;
+            margin: auto;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+        .letsstart_div {
+            background-color: #0055aa;
+            width: 50%;
+            height: 15%;
+            position: absolute;
+            margin: auto;
+            top: 30%;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+
+        body{
+            align-content: center;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <link href="../static/css/css.css" th:href="@{/css/css.css}" rel="stylesheet" />
+</head>
+<body>
+<div class = "hello_div">
+    <p style = "font-size: 50px;
+    align-content: center;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 30%;
+    height: 50%;
+    font-family: serif;
+    color: darkturquoise"  >Hello</p>
+</div>
+<div class = "letsstart_div">
+    <p style = "font-size: 30px;
+    align-content: center;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 70%;
+    height: 50%;
+    font-family: serif;
+    color: darkturquoise;"  ><a href="/Overlords" style="text-decoration:none; color: darkturquoise">We need to appoint some overlords, let's get started!</a></p>
+</div>
+</body>
+</html>
